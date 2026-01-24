@@ -222,6 +222,19 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const isLandingPage = pathname === '/';
+
+  if (isLandingPage) {
+    return (
+      <html lang="en" className="no-scrollbar">
+        <body className={inter.className}>
+          {children}
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en" className="no-scrollbar">
       <body className={inter.className}>
