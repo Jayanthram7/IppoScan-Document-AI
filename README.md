@@ -1,4 +1,4 @@
-# Docusense AI - Document Intelligence Platform
+# IppoScan - Document Intelligence Platform
 
 A full-stack AI-driven Document Intelligence application for Supply Chain Automation built with Next.js, Tailwind CSS, and Google Gemini AI.
 

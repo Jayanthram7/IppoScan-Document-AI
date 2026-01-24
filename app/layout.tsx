@@ -20,22 +20,25 @@ function Sidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-slate-900 text-white flex flex-col">
+    <aside className="fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-200 text-gray-900 flex flex-col z-40">
       {/* Logo */}
-      <div className="p-6 border-b border-slate-800">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+      <div className="p-6 border-b border-gray-100">
+        <Link href="/" className="flex items-center gap-2">
+          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center p-1.5 shadow-sm">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+              {/* Up-Right Arrow */}
+              <path d="M 10 80 L 30 60 L 75 60 L 90 45 L 75 30 L 60 45 L 30 45 L 10 65 Z" fill="#10b981" />
+              {/* Down-Left Arrow */}
+              <path d="M 90 20 L 70 40 L 25 40 L 10 55 L 25 70 L 40 55 L 70 55 L 90 35 Z" fill="#10b981" />
             </svg>
           </div>
-          <span className="text-xl font-bold">Docusense AI</span>
-        </div>
+          <span className="text-xl font-bold tracking-tight">IppoScan</span>
+        </Link>
       </div>
 
       {/* Menu */}
       <nav className="flex-1 px-4 py-6">
-        <div className="mb-2 px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        <div className="mb-2 px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">
           MENU
         </div>
         <SidebarLink href="/dashboard" icon="dashboard" isActive={isActive('/dashboard')}>
@@ -51,7 +54,7 @@ function Sidebar() {
       </nav>
 
       {/* Bottom Menu */}
-      <div className="p-4 border-t border-slate-800">
+      <div className="p-4 border-t border-gray-100">
         <SidebarLink href="/settings" icon="settings" isActive={isActive('/settings')}>
           Settings
         </SidebarLink>
@@ -80,14 +83,14 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
     <div>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out transform hover:scale-105 hover:-translate-y-0.5 hover:shadow-lg ${isInventoryActive
-          ? 'bg-blue-600 text-white shadow-md'
-          : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+        className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out font-medium ${isInventoryActive
+          ? 'bg-emerald-50 text-emerald-600'
+          : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
           }`}
       >
         <div className="flex items-center gap-3">
           <SidebarIcon type="inventory" />
-          <span className="text-sm font-medium">Inventory</span>
+          <span className="text-sm">Inventory</span>
         </div>
         <svg
           className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
@@ -100,53 +103,41 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
       </button>
 
       {isOpen && (
-        <div className="ml-8 mt-1 space-y-1 animate-slideIn">
+        <div className="ml-8 mt-1 space-y-1 animate-slideIn border-l border-gray-200 pl-3">
           <Link
             href="/inventory/source"
-            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-x-1 ${isActive('/inventory/source')
-              ? 'bg-blue-600 text-white shadow-md'
-              : 'text-slate-400 hover:bg-slate-800 hover:text-white hover:shadow-md'
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/source')
+              ? 'text-emerald-600 font-medium bg-emerald-50'
+              : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
           >
-            <svg className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
             Source (Orders)
           </Link>
           <Link
             href="/inventory/transit"
-            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-x-1 ${isActive('/inventory/transit')
-              ? 'bg-blue-600 text-white shadow-md'
-              : 'text-slate-400 hover:bg-slate-800 hover:text-white hover:shadow-md'
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/transit')
+              ? 'text-emerald-600 font-medium bg-emerald-50'
+              : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
           >
-            <svg className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
             Transit
           </Link>
           <Link
             href="/inventory/delivered"
-            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-x-1 ${isActive('/inventory/delivered')
-              ? 'bg-blue-600 text-white shadow-md'
-              : 'text-slate-400 hover:bg-slate-800 hover:text-white hover:shadow-md'
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/delivered')
+              ? 'text-emerald-600 font-medium bg-emerald-50'
+              : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
           >
-            <svg className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
             Delivered (Sales)
           </Link>
           <Link
             href="/inventory/in-godown"
-            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-x-1 ${isActive('/inventory/in-godown')
-              ? 'bg-blue-600 text-white shadow-md'
-              : 'text-slate-400 hover:bg-slate-800 hover:text-white hover:shadow-md'
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/in-godown')
+              ? 'text-emerald-600 font-medium bg-emerald-50'
+              : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
           >
-            <svg className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-            </svg>
             Godown (Stock)
           </Link>
         </div>
@@ -169,13 +160,13 @@ function SidebarLink({
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out transform hover:scale-105 hover:-translate-y-0.5 hover:shadow-lg ${isActive
-        ? 'bg-blue-600 text-white shadow-md'
-        : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+      className={`flex items-center gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive
+        ? 'bg-emerald-500 text-white shadow-md shadow-emerald-200'
+        : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
         }`}
     >
       <SidebarIcon type={icon} />
-      <span className="text-sm font-medium">{children}</span>
+      <span className="text-sm">{children}</span>
     </Link>
   );
 }
@@ -184,7 +175,7 @@ function SidebarIcon({ type }: { type: string }) {
   const icons: Record<string, JSX.Element> = {
     dashboard: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
       </svg>
     ),
     invoices: (
@@ -244,7 +235,9 @@ export default function RootLayout({
             {children}
             <footer className="mt-auto py-6 text-center text-sm text-gray-500 border-t border-gray-100 mx-8">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <p>&copy; Docusense AI 2026</p>
+                <div className="text-center text-sm text-gray-600">
+                  <p>&copy; IppoScan 2026</p>
+                </div>
                 <p className="flex items-center gap-1">
                   Made in India <span className="text-red-500 animate-pulse">❤️</span>
                 </p>

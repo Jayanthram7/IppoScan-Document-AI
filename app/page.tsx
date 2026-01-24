@@ -33,10 +33,15 @@ export default function Home() {
       <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
         <div className="flex items-center gap-8 px-2 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-full shadow-2xl">
           <div className="flex items-center gap-2 pl-4">
-            <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center text-black font-bold text-xs">
-              D
-            </div>
-            <span className="font-semibold text-base tracking-wide">Docusense AI</span>
+            <Link href="/" className="flex items-center space-x-2">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7">
+                {/* Up-Right Arrow */}
+                <path d="M 10 80 L 30 60 L 75 60 L 90 45 L 75 30 L 60 45 L 30 45 L 10 65 Z" fill="white" />
+                {/* Down-Left Arrow */}
+                <path d="M 90 20 L 70 40 L 25 40 L 10 55 L 25 70 L 40 55 L 70 55 L 90 35 Z" fill="white" />
+              </svg>
+              <span className="font-semibold text-base tracking-wide">IppoScan</span>
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center gap-5 text-sm text-gray-400 font-medium">
@@ -105,7 +110,7 @@ export default function Home() {
 
         {/* Headline */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 opacity-0 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-          <span className="block text-white mb-2">Docs AI - Ship faster.</span>
+          <span className="block text-white mb-2">Ippo - Ship Faster.</span>
           <span className="block text-gray-500">Process smarter.</span>
         </h1>
 
@@ -147,7 +152,7 @@ export default function Home() {
             ))}
           </div>
           <p className="text-sm text-gray-500">
-            Trusted by <span className="text-white font-medium">2,000+</span> teams worldwide
+            Trusted by <span className="text-white font-medium">100+</span> teams worldwide
           </p>
         </div>
       </main>

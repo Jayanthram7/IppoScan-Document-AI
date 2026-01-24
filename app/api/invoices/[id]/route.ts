@@ -129,3 +129,69 @@ export async function DELETE(
   }
 }
 
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+
+    if (!ObjectId.isValid(id)) {
+      return NextResponse.json(
+        { error: 'Invalid invoice ID' },
+        { status: 400 }
+      );
+    }
+
+    const body = await request.json();
+    const invoicesCollection = await getInvoicesCollection();
+
+    // Prepare update data
+    const updateData: any = {
+      invoice_number: body.invoice_number,
+      invoice_date: body.invoice_date,
+      supplier_name: body.supplier_name,
+      structured_data: {
+        ...body.structured_data,
+        subtotal: body.structured_data.subtotal,
+        tax: body.structured_data.tax,
+        grand_total: body.structured_data.grand_total,
+        items: body.structured_data.items || []
+      },
+      updated_at: new Date()
+    };
+
+    // Update the invoice
+    const result = await invoicesCollection.updateOne(
+      { _id: new ObjectId(id) as any },
+      { $set: updateData }
+    );
+
+    if (result.matchedCount === 0) {
+      return NextResponse.json(
+        { error: 'Invoice not found' },
+        { status: 404 }
+      );
+    }
+
+    // Fetch and return the updated invoice
+    const updatedInvoice = await invoicesCollection.findOne({
+      _id: new ObjectId(id) as any
+    });
+
+    return NextResponse.json({
+      success: true,
+      message: 'Invoice updated successfully',
+      invoice: {
+        ...updatedInvoice,
+        _id: updatedInvoice?._id?.toString()
+      }
+    });
+  } catch (error: any) {
+    console.error('Error updating invoice:', error);
+    return NextResponse.json(
+      { error: `Failed to update invoice: ${error.message}` },
+      { status: 500 }
+    );
+  }
+}
