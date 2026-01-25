@@ -138,32 +138,15 @@ export function InvoiceList() {
     <div className="space-y-6">
       {/* Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-<<<<<<< HEAD
-        <div className="bg-white p-4 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Total Orders</span>
-            <div className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center">
-=======
         <div className="bg-white p-5 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
           <div className="flex items-center justify-between mb-3">
             <span className="text-sm text-gray-600">Total Orders</span>
             <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center">
->>>>>>> 823ba59b5965aa98d5f74775028513d840e6a6a7
               <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
             </div>
           </div>
-<<<<<<< HEAD
-          <div className="text-2xl font-bold text-gray-900">{totalOrders.toLocaleString()}</div>
-          <div className="text-xs text-green-600 mt-1">+31%</div>
-        </div>
-
-        <div className="bg-white p-4 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Source (Orders)</span>
-            <div className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center">
-=======
           <div className="text-3xl font-bold text-gray-900">{totalOrders.toLocaleString()}</div>
           <div className="text-xs text-green-600 mt-1">+31%</div>
         </div>
@@ -172,23 +155,12 @@ export function InvoiceList() {
           <div className="flex items-center justify-between mb-3">
             <span className="text-sm text-gray-600">Source (Orders)</span>
             <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center">
->>>>>>> 823ba59b5965aa98d5f74775028513d840e6a6a7
               <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
           </div>
-<<<<<<< HEAD
-          <div className="text-2xl font-bold text-gray-900">{sourceOrders}</div>
-          <div className="text-xs text-green-600 mt-1">+12</div>
-        </div>
-
-        <div className="bg-white p-4 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Transit</span>
-            <div className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center">
-=======
-          <div className="text-3xl font-bold text-gray-900">{sourceOrders}</div>
+          <div className="text-3xl font-bold text-gray-900">{sourceOrders.toLocaleString()}</div>
           <div className="text-xs text-green-600 mt-1">+12</div>
         </div>
 
@@ -196,23 +168,12 @@ export function InvoiceList() {
           <div className="flex items-center justify-between mb-3">
             <span className="text-sm text-gray-600">Transit</span>
             <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center">
->>>>>>> 823ba59b5965aa98d5f74775028513d840e6a6a7
               <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
               </svg>
             </div>
           </div>
-<<<<<<< HEAD
-          <div className="text-2xl font-bold text-gray-900">{transitOrders.toLocaleString()}</div>
-          <div className="text-xs text-green-600 mt-1">+46</div>
-        </div>
-
-        <div className="bg-white p-4 rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Delivered (Sales)</span>
-            <div className="w-9 h-9 rounded-lg bg-gray-50 flex items-center justify-center">
-=======
           <div className="text-3xl font-bold text-gray-900">{transitOrders.toLocaleString()}</div>
           <div className="text-xs text-green-600 mt-1">+46</div>
         </div>
@@ -221,17 +182,12 @@ export function InvoiceList() {
           <div className="flex items-center justify-between mb-3">
             <span className="text-sm text-gray-600">Delivered (Sales)</span>
             <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center">
->>>>>>> 823ba59b5965aa98d5f74775028513d840e6a6a7
               <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
           </div>
-<<<<<<< HEAD
-          <div className="text-2xl font-bold text-gray-900">{deliveredOrders.toLocaleString()}</div>
-=======
           <div className="text-3xl font-bold text-gray-900">{deliveredOrders.toLocaleString()}</div>
->>>>>>> 823ba59b5965aa98d5f74775028513d840e6a6a7
           <div className="text-xs text-green-600 mt-1">+2.8%</div>
         </div>
       </div>
