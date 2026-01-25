@@ -195,7 +195,6 @@ export async function PUT(
     );
   }
 }
-<<<<<<< HEAD
 
 export async function PATCH(
   request: NextRequest,
@@ -244,5 +243,3 @@ export async function PATCH(
     );
   }
 }
-=======
->>>>>>> 823ba59b5965aa98d5f74775028513d840e6a6a7
