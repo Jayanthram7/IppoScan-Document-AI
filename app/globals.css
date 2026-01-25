@@ -20,6 +20,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@layer base {
+
+  input,
+  textarea,
+  select {
+    color: #000000 !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #6b7280 !important;
+    /* Gray-500 */
+    opacity: 1;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

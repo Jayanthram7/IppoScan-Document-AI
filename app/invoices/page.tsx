@@ -15,15 +15,21 @@ export default function InvoicesPage() {
   };
 
   return (
-    <div className="px-4 py-8">
+    <div className="px-8 py-6 bg-[#F8F7F4] min-h-screen">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Invoices</h1>
-          <p className="text-gray-600 mt-2">View and manage all processed invoices</p>
+          <h1 className="text-2xl font-bold text-gray-900">Orders</h1>
+          <p className="text-gray-600 text-sm mt-1">Track and manage customer orders.</p>
         </div>
-        <Button onClick={() => setShowUpload(true)} variant="primary">
-          + Add Invoice
-        </Button>
+        <button
+          onClick={() => setShowUpload(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg text-sm font-medium hover:bg-emerald-600 transition-colors"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          </svg>
+          Add Invoice
+        </button>
       </div>
 
       {showUpload && (

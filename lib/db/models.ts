@@ -5,52 +5,57 @@ import { Db, Collection } from 'mongodb';
 export async function getInvoicesCollection(): Promise<Collection<Invoice>> {
   const db = await getDatabase();
   const collection = db.collection<Invoice>('invoices');
-  
+
   // Create indexes
   await collection.createIndex({ invoice_number: 1 }, { unique: true });
   await collection.createIndex({ supplier_name: 1 });
   await collection.createIndex({ created_at: -1 });
   await collection.createIndex({ validation_status: 1 });
-  
+
   return collection;
 }
 
 export async function getSuppliersCollection(): Promise<Collection<Supplier>> {
   const db = await getDatabase();
   const collection = db.collection<Supplier>('suppliers');
-  
+
   await collection.createIndex({ name: 1 }, { unique: true });
-  
+
   return collection;
 }
 
 export async function getInvoiceItemsCollection(): Promise<Collection<InvoiceItemDocument>> {
   const db = await getDatabase();
   const collection = db.collection<InvoiceItemDocument>('invoice_items');
-  
+
   await collection.createIndex({ invoice_id: 1 });
-  
+
   return collection;
 }
 
 export async function getTransactionsCollection(): Promise<Collection<Transaction>> {
   const db = await getDatabase();
   const collection = db.collection<Transaction>('transactions');
-  
+
   await collection.createIndex({ invoice_id: 1 });
   await collection.createIndex({ date: -1 });
   await collection.createIndex({ type: 1 });
-  
+
   return collection;
 }
 
 export async function getInventoryCollection(): Promise<Collection<InventoryItem>> {
   const db = await getDatabase();
   const collection = db.collection<InventoryItem>('inventory');
-  
+
   await collection.createIndex({ item_name: 1 }, { unique: true });
-  
+
   return collection;
+}
+
+export async function getShipmentsCollection(): Promise<Collection<any>> {
+  const db = await getDatabase();
+  return db.collection('shipments');
 }
 
 // Vector similarity search using cosine similarity
@@ -61,7 +66,7 @@ export async function vectorSimilaritySearch(
 ): Promise<any[]> {
   const db = await getDatabase();
   const collection = db.collection(collectionName);
-  
+
   // Calculate cosine similarity for each document
   const pipeline = [
     {
@@ -120,8 +125,7 @@ export async function vectorSimilaritySearch(
     { $limit: limit },
     { $project: { similarity: 1, embedding: 0 } }
   ];
-  
+
   const results = await collection.aggregate(pipeline).toArray();
   return results;
 }
-

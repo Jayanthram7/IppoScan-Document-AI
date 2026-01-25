@@ -6,7 +6,7 @@ export interface InvoiceItem {
 }
 
 export type InvoiceType = 'Purchase Invoice' | 'Purchase Order' | 'Sales Invoice' | 'Other';
-export type InventoryStatus = 'Source' | 'In Travel' | 'Transit' | 'Delivered' | 'In Godown';
+export type InventoryStatus = 'Source' | 'In Travel' | 'Shipment' | 'Delivered' | 'In Godown';
 
 export interface InvoiceData {
   invoice_number: string;

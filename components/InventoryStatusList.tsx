@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Card } from '@/components/ui/Card';
-import { Table } from '@/components/ui/Table';
 import { ValidationBadge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
@@ -30,6 +28,7 @@ interface InventoryStatusListProps {
 export function InventoryStatusList({ status, title, description }: InventoryStatusListProps) {
     const [invoices, setInvoices] = useState<Invoice[]>([]);
     const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         fetchInvoices();
@@ -53,34 +52,138 @@ export function InventoryStatusList({ status, title, description }: InventorySta
         }
     };
 
+    const handleStatusUpdate = async (invoiceId: string, invoiceNumber: string) => {
+        if (!confirm(`Are you sure you want to mark invoice ${invoiceNumber} as Valid?`)) {
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/invoices/${invoiceId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    validation_status: 'Valid',
+                }),
+            });
+
+            if (response.ok) {
+                alert('Invoice status updated successfully!');
+                fetchInvoices(); // Refresh the list
+            } else {
+                const error = await response.json();
+                alert(`Failed to update status: ${error.error || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Error updating invoice status:', error);
+            alert('Failed to update invoice status');
+        }
+    };
+
+    const filteredInvoices = searchQuery
+        ? invoices.filter(inv =>
+            inv.invoice_number.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            inv.supplier_name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        : invoices;
+
     if (loading) {
         return <div className="text-center py-8">Loading invoices...</div>;
     }
 
-    const headers = ['Invoice Number', 'Date', 'Supplier', 'Type', 'Total', 'Status', 'Actions'];
-    const rows = invoices.map((invoice) => [
-        invoice.invoice_number,
-        new Date(invoice.invoice_date).toLocaleDateString(),
-        invoice.supplier_name,
-        invoice.invoice_type,
-        `$${parseFloat(invoice.structured_data?.grand_total || '0').toFixed(2)}`,
-        <ValidationBadge key={invoice._id} status={invoice.validation_status} />,
-        <Link key={invoice._id} href={`/invoices/${invoice._id}`}>
-            <Button variant="outline" size="sm">View</Button>
-        </Link>,
-    ]);
-
     return (
-        <div className="p-8">
-            <Card title={title}>
-                <p className="text-gray-600 mb-6">{description}</p>
+        <div className="p-8 bg-[#F8F7F4] min-h-screen">
+            {/* Header */}
+            <div className="mb-6">
+                <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
+                <p className="text-gray-600 text-sm mt-1">{description}</p>
+            </div>
 
-                {invoices.length === 0 ? (
-                    <p className="text-gray-500 text-center py-8">No invoices found in {status} status</p>
-                ) : (
-                    <Table headers={headers} rows={rows} />
-                )}
-            </Card>
+            {/* Table Card */}
+            <div className="bg-white rounded-xl border border-gray-200">
+                <div className="p-5 border-b border-gray-200 flex items-center justify-between">
+                    <h3 className="text-lg font-bold text-gray-900">All Invoices ({filteredInvoices.length})</h3>
+                    <div className="relative">
+                        <input
+                            type="text"
+                            placeholder="Search invoices..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                        />
+                        <svg className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead className="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Invoice Number</th>
+                                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
+                                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">{status === 'Delivered' ? 'Customer' : 'Supplier'}</th>
+                                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Type</th>
+                                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Total</th>
+                                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {filteredInvoices.length === 0 ? (
+                                <tr>
+                                    <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
+                                        No invoices found in {status} status
+                                    </td>
+                                </tr>
+                            ) : (
+                                filteredInvoices.map((invoice) => (
+                                    <tr key={invoice._id} className="hover:bg-gray-50 transition-colors">
+                                        <td className="px-6 py-4">
+                                            <Link href={`/invoices/${invoice._id}`} className="text-sm font-medium text-gray-900 hover:text-gray-600">
+                                                {invoice.invoice_number}
+                                            </Link>
+                                        </td>
+                                        <td className="px-6 py-4 text-sm text-gray-900">
+                                            {new Date(invoice.invoice_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                        </td>
+                                        <td className="px-6 py-4 text-sm text-gray-900">{invoice.supplier_name}</td>
+                                        <td className="px-6 py-4 text-sm text-gray-900">{invoice.invoice_type}</td>
+                                        <td className="px-6 py-4 text-sm font-semibold text-gray-900">
+                                            ${parseFloat(invoice.structured_data?.grand_total || '0').toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <ValidationBadge status={invoice.validation_status} />
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <div className="flex items-center gap-2">
+                                                <Link href={`/invoices/${invoice._id}`}>
+                                                    <button className="px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                                                        View
+                                                    </button>
+                                                </Link>
+                                                {(invoice.validation_status === 'Potential Fraud' || invoice.validation_status === 'Needs Review') && (
+                                                    <button
+                                                        onClick={() => handleStatusUpdate(invoice._id, invoice.invoice_number)}
+                                                        className="w-8 h-8 flex items-center justify-center bg-white border-2 border-emerald-500 rounded-lg hover:bg-emerald-50 transition-colors group"
+                                                        title="Mark as Valid"
+                                                    >
+                                                        <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                    </button>
+                                                )}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 }

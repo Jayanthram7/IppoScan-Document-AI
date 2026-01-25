@@ -3,6 +3,7 @@ import { getInvoicesCollection, getSuppliersCollection, getInvoiceItemsCollectio
 import { validateInvoice } from '@/lib/gemini/text';
 import { generateInvoiceEmbedding } from '@/lib/gemini/embeddings';
 import { Invoice, InvoiceData, InvoiceItemDocument, Transaction, InventoryStatus } from '@/types/invoice';
+import { sendInvoiceNotification } from '@/lib/twilio/notifications';
 
 export async function GET(request: NextRequest) {
   try {
@@ -277,6 +278,32 @@ export async function POST(request: NextRequest) {
     }
 
     await transactionsCollection.insertOne(transaction);
+
+    // Send WhatsApp/SMS notification
+    try {
+      const invoiceTypeMap: { [key: string]: 'Purchase' | 'Sales' | 'Transit' } = {
+        'Purchase Order': 'Purchase',
+        'Purchase Invoice': 'Purchase',
+        'Sales Invoice': 'Sales',
+      };
+
+      await sendInvoiceNotification({
+        invoiceNumber: invoice.invoice_number,
+        invoiceType: invoiceTypeMap[invoiceType] || 'Transit',
+        customerOrSupplier: invoice.supplier_name,
+        totalAmount: grandTotal,
+        currency: '₹',
+        items: invoiceData.items?.map((item: any) => ({
+          item_name: item.item_name || '',
+          quantity: parseFloat(item.quantity || '0'),
+          unit_price: parseFloat(item.unit_price || '0'),
+          total_price: parseFloat(item.total_price || '0'),
+        })) || [],
+      });
+    } catch (notificationError) {
+      console.error('Failed to send notification:', notificationError);
+      // Don't fail the invoice creation if notification fails
+    }
 
     return NextResponse.json({
       success: true,
