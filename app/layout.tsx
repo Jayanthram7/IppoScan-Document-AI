@@ -316,7 +316,7 @@ export default function RootLayout({
         <div className="flex bg-gray-50 min-h-screen">
           <Sidebar />
           <div className="flex-1 ml-64 flex flex-col min-h-screen">
-            <main className="flex-1 p-8 overflow-y-auto">
+            <main className="flex-1 overflow-y-auto">
               {children}
             </main>
             <footer className="flex-shrink-0 py-4 px-8 border-t border-gray-100 bg-white shadow-sm mt-auto">
