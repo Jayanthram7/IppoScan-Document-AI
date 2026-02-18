@@ -1,5 +1,7 @@
 import { getDatabase } from './mongodb';
 import { Invoice, Supplier, InvoiceItemDocument, Transaction, InventoryItem } from '@/types/invoice';
+import { XmlConversion } from '@/types/xml';
+
 import { Db, Collection } from 'mongodb';
 
 export async function getInvoicesCollection(): Promise<Collection<Invoice>> {
@@ -53,10 +55,19 @@ export async function getInventoryCollection(): Promise<Collection<InventoryItem
   return collection;
 }
 
+// ... existing code ...
 export async function getShipmentsCollection(): Promise<Collection<any>> {
   const db = await getDatabase();
   return db.collection('shipments');
 }
+
+export async function getXmlConversionsCollection(): Promise<Collection<XmlConversion>> {
+  const db = await getDatabase();
+  const collection = db.collection<XmlConversion>('xml_conversions');
+  await collection.createIndex({ createdAt: -1 });
+  return collection;
+}
+
 
 // Vector similarity search using cosine similarity
 export async function vectorSimilaritySearch(
