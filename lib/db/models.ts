@@ -134,7 +134,7 @@ export async function vectorSimilaritySearch(
     { $match: { embedding: { $exists: true, $ne: null } } },
     { $sort: { similarity: -1 } },
     { $limit: limit },
-    { $project: { similarity: 1, embedding: 0 } }
+    { $project: { similarity: 1, _id: 1 } }
   ];
 
   const results = await collection.aggregate(pipeline).toArray();

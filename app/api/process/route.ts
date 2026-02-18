@@ -10,7 +10,7 @@ import {
   getTransactionsCollection,
   getInventoryCollection,
 } from '@/lib/db/models';
-import { Invoice, InvoiceItemDocument, Transaction, InventoryItem } from '@/types/invoice';
+import { Invoice, InvoiceItemDocument, Transaction, InventoryItem, InventoryStatus } from '@/types/invoice';
 
 export async function POST(request: NextRequest) {
   try {
@@ -72,11 +72,31 @@ export async function POST(request: NextRequest) {
     // Update the invoice data with the unique number
     invoiceData.invoice_number = invoiceNumber;
 
+    // Determine inventory status based on invoice type
+    let inventory_status: InventoryStatus = 'In Travel'; // default
+    const invoiceType = invoiceData.invoice_type || 'Other';
+
+    switch (invoiceType) {
+      case 'Purchase Invoice':
+        inventory_status = 'In Godown';
+        break;
+      case 'Purchase Order':
+        inventory_status = 'Source';
+        break;
+      case 'Sales Invoice':
+        inventory_status = 'Delivered';
+        break;
+      default:
+        inventory_status = 'In Travel';
+    }
+
     // Create invoice document
     const invoice: Invoice = {
       invoice_number: invoiceData.invoice_number || `INV-${Date.now()}`,
       invoice_date: invoiceData.invoice_date || new Date().toISOString(),
       supplier_name: invoiceData.supplier_name || 'Unknown',
+      invoice_type: invoiceType,
+      inventory_status: inventory_status,
       raw_text: invoiceData.raw_text || '',
       structured_data: invoiceData,
       validation_status: validationResult.status,
@@ -135,6 +155,8 @@ export async function POST(request: NextRequest) {
         await invoiceItemsCollection.insertMany(items);
 
         // Update inventory
+        const multiplier = invoiceData.invoice_type === 'Sales Invoice' ? -1 : 1;
+
         for (const item of items) {
           await inventoryCollection.updateOne(
             { item_name: item.item_name },
@@ -144,7 +166,7 @@ export async function POST(request: NextRequest) {
                 created_at: new Date(),
               },
               $inc: {
-                quantity: item.quantity,
+                quantity: item.quantity * multiplier,
               },
               $set: {
                 last_updated: new Date(),

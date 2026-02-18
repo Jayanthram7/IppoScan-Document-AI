@@ -1,12 +1,13 @@
+
 import { NextRequest } from 'next/server';
 import { generateEmbedding } from '@/lib/gemini/embeddings';
 import { generateRAGResponse } from '@/lib/gemini/text';
 import { vectorSimilaritySearch } from '@/lib/db/models';
-import { getInvoicesCollection, getTransactionsCollection } from '@/lib/db/models';
+import { getInvoicesCollection, getTransactionsCollection, getInventoryCollection } from '@/lib/db/models';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,6 +18,7 @@ export async function POST(request: NextRequest) {
       return new Response('No message provided', { status: 400 });
     }
 
+    // Generate query embedding
     // Generate query embedding
     const queryEmbedding = await generateEmbedding(userMessage);
 
@@ -33,10 +35,29 @@ export async function POST(request: NextRequest) {
     );
 
     // Fetch full documents
+    // Fetch full documents
     const invoicesCollection = await getInvoicesCollection();
     const transactionsCollection = await getTransactionsCollection();
+    const inventoryCollection = await getInventoryCollection();
+
 
     const contextParts: string[] = [];
+
+    // --- NEW: Add Inventory Context ---
+    // Fetch all inventory items for now (assuming reasonable size). 
+    // If it grows, we should implement vector search for inventory too.
+    const inventoryItems = await inventoryCollection.find({}).toArray();
+
+    if (inventoryItems.length > 0) {
+      const inventoryContext = inventoryItems.map(item =>
+        `Item: ${item.item_name}, Quantity: ${item.quantity}`
+      ).join('\n');
+
+      contextParts.push("Current Inventory/Stock Levels:\n" + inventoryContext);
+    } else {
+      contextParts.push("Current Inventory/Stock Levels: No items in stock.");
+    }
+    // ----------------------------------
 
     // Add invoice context
     for (const result of invoiceResults) {
@@ -64,11 +85,12 @@ export async function POST(request: NextRequest) {
 
     const context = contextParts.length > 0
       ? contextParts.join('\n\n')
-      : 'No relevant invoices or transactions found in the database.';
+      : 'No relevant data found in the database.';
 
     // Generate RAG response using Gemini
     const prompt = `Answer the user's question using ONLY the provided database context.
 Summarize clearly and accurately.
+If the user asks about stock or inventory quantities, check the "Current Inventory/Stock Levels" section carefully.
 If data is missing, say so explicitly.
 Be concise but complete in your answer.
 
@@ -110,4 +132,3 @@ Provide a clear, structured answer based on the context above.`;
     return new Response(`Chat failed: ${error.message}`, { status: 500 });
   }
 }
-

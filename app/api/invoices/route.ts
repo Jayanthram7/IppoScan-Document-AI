@@ -149,7 +149,7 @@ export async function POST(request: NextRequest) {
       // Validate current sales invoice items against available stock
       const insufficientStock: string[] = [];
 
-      invoiceData.items.forEach(item => {
+      invoiceData.items.forEach((item: any) => {
         const requestedQty = parseFloat(item.quantity) || 0;
         const availableQty = stockMap.get(item.item_name) || 0;
 
@@ -236,6 +236,8 @@ export async function POST(request: NextRequest) {
         await invoiceItemsCollection.insertMany(items);
 
         // Update inventory
+        const multiplier = invoiceType === 'Sales Invoice' ? -1 : 1;
+
         for (const item of items) {
           await inventoryCollection.updateOne(
             { item_name: item.item_name },
@@ -245,7 +247,7 @@ export async function POST(request: NextRequest) {
                 created_at: new Date(),
               },
               $inc: {
-                quantity: item.quantity,
+                quantity: item.quantity * multiplier,
               },
               $set: {
                 last_updated: new Date(),
