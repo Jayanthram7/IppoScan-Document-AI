@@ -313,25 +313,36 @@ export default function RootLayout({
   return (
     <html lang="en" className="no-scrollbar">
       <body className={inter.className}>
-        <div className="flex h-screen bg-gray-50 overflow-hidden">
+        <div className="flex bg-gray-50 min-h-screen">
           <Sidebar />
-          <div className="flex-1 ml-64 flex flex-col overflow-hidden">
-            <main className="flex-1 overflow-y-auto">
+          <div className="flex-1 ml-64 flex flex-col min-h-screen">
+            <main className="flex-1 p-8 overflow-y-auto">
               {children}
             </main>
-            <footer className="flex-shrink-0 py-2 px-8">
-              <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
-                <div className="w-4 h-4 bg-white rounded flex items-center justify-center p-0.5 shadow-sm">
-                  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                    <path d="M 10 80 L 30 60 L 75 60 L 90 45 L 75 30 L 60 45 L 30 45 L 10 65 Z" fill="#10b981" />
-                    <path d="M 90 20 L 70 40 L 25 40 L 10 55 L 25 70 L 40 55 L 70 55 L 90 35 Z" fill="#10b981" />
-                  </svg>
-                </div>
+            <footer className="flex-shrink-0 py-4 px-8 border-t border-gray-100 bg-white shadow-sm mt-auto">
+              <div className="flex items-center justify-center gap-2 text-xs text-gray-500 font-medium tracking-wide">
                 <span>© IppoScan 2026. All rights reserved.</span>
               </div>
             </footer>
           </div>
         </div>
+
+        {/* IppoChat Fixed Floating Button - Circular Pill with Icon */}
+        <a
+          href="/chat"
+          className="fixed bottom-8 right-8 z-50 flex items-center gap-3 bg-indigo-600 hover:bg-indigo-700 text-white pl-4 pr-6 py-3 rounded-full shadow-lg transition-all transform hover:scale-105 hover:shadow-xl group active:scale-95 border-2 border-indigo-400/20 backdrop-blur-sm"
+        >
+          <div className="relative flex items-center justify-center">
+            <div className="absolute inset-0 bg-indigo-400 rounded-full animate-ping opacity-20 group-hover:opacity-40"></div>
+            <div className="relative bg-white/20 p-1.5 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+              </svg>
+            </div>
+          </div>
+          <span className="font-bold text-sm tracking-wide">IppoChat Ai</span>
+        </a>
+
       </body>
     </html>
   );
