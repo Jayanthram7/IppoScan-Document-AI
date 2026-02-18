@@ -1,0 +1,621 @@
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?><mx:EMS xmlns:mx=\"http://www.maxware.com/EMS\">
+                            
+                            <mx:GUID>8E88254CBE684C30B50AC5BD129D6119</mx:GUID>
+                            
+                            <mx:VERSION>1.0</mx:VERSION>
+                            
+                            <mx:DSEJobs>
+                                
+                                <mx:Sequence>
+                                    
+                                    <mx:Step Enabled=\"TRUE\" Key=\"Action Task652\"/>
+                                    
+                                </mx:Sequence>
+                                
+                                <mx:Job name=\"Action Task652\">
+                                    
+                                    <mx:Description/>
+                                    
+                                    <mx:Sequence>
+                                        
+                                        <mx:Step Enabled=\"TRUE\" Key=\"8245cadb-0c29-4127-b6f2-9d209383f920\"/>
+                                        
+                                    </mx:Sequence>
+                                    
+                                    <mx:Globals/>
+                                    
+                                    <mx:Common>
+                                        
+                                        <ENGINETYPE>1</ENGINETYPE>
+                                        
+                                        <SCRIPTENG>JScript</SCRIPTENG>
+                                        
+                                        <EVLOG>0</EVLOG>
+                                        
+                                        <ERRLOG>%$ddm.ddmpath%\\DSE.log</ERRLOG>
+                                        
+                                        <XLRESET>1</XLRESET>
+                                        
+                                    </mx:Common>
+                                    
+                                    <mx:Pass name=\"8245cadb-0c29-4127-b6f2-9d209383f920\">
+                                                    
+                                        <TYPE>To Custom</TYPE>
+                                                    
+                                        <DESCRIPTION>CreateABAPUser</DESCRIPTION>
+                                                    
+                                        <COMPACTDB/>
+                                                    
+                                        <REPOSITORY>0</REPOSITORY>
+                                        
+                                        <PASSDOC>SP2: added
+CUA_MASTER	%$rep.CUA_MASTER% as Parameter
+added attributes
+	securitypolicy	%MX_USERTYPE%
+	SNCName	%MX_SNC_NAME%
+	SNCFlag		%MX_SNC_FLAG%</PASSDOC>
+                                        
+                                        <UPDATEDB>%$ddm.identitycenter%</UPDATEDB>
+                                        
+                                        <MAXDELETE>5%</MAXDELETE>
+                                        
+                                        <AUDITLEVEL>0</AUDITLEVEL>
+                                        
+                                        <DELTAENABLED>0</DELTAENABLED>
+                                        
+                                        <SKIP>1</SKIP>
+                                        
+                                        <JUSTDELTA>0</JUSTDELTA>
+                                        
+                                        <MARKDEL>0</MARKDEL>
+                                        
+                                        <AUTODELETE>0</AUTODELETE>
+                                        
+                                        <CURRTAB>2</CURRTAB>
+                                        
+                                        <READFROMPVO>0</READFROMPVO>
+                                        
+                                        <FILTEREDITSTATUS>0</FILTEREDITSTATUS>
+                                        
+                                        <USEIDSTORE>0</USEIDSTORE>
+                                        
+                                        <IDSTORE>0</IDSTORE>
+                                        
+                                        <SOURCEENTRYTYPE>0</SOURCEENTRYTYPE>
+                                        
+                                        <CLASSNAME>ToSAP</CLASSNAME>
+                                        
+                                        <CUA_MASTER CUSTOMPAR=\"1\">%$rep.CUA_MASTER%</CUA_MASTER>
+                                        
+                                        <jco.client.ashost CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_ASHOST%</jco.client.ashost>
+                                        
+                                        <jco.client.sysnr CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_SYSNR%</jco.client.sysnr>
+                                        
+                                        <jco.client.user CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_USER%</jco.client.user>
+                                        
+                                        <jco.client.client CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_CLIENT%</jco.client.client>
+                                        
+                                        <jco.client.passwd CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_PASSWD%</jco.client.passwd>
+                                        
+                                        <jco.client.lang CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_LANG%</jco.client.lang>
+                                        
+                                        <jco.client.group CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_GROUP%</jco.client.group>
+                                        
+                                        <jco.client.gwhost CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_GWHOST%</jco.client.gwhost>
+                                        
+                                        <jco.client.gwserv CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_GWSERV%</jco.client.gwserv>
+                                        
+                                        <jco.client.mshost CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_MSHOST%</jco.client.mshost>
+                                        
+                                        <jco.client.r3name CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_R3NAME%</jco.client.r3name>
+                                        
+                                        <jco.client.snc_lib CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_SNC_LIB%</jco.client.snc_lib>
+                                        
+                                        <jco.client.snc_mode CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_SNC_MODE%</jco.client.snc_mode>
+                                        
+                                        <jco.client.snc_myname CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_SNC_MYNAME%</jco.client.snc_myname>
+                                        
+                                        <jco.client.snc_partnername CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_SNC_PARTNERNAME%</jco.client.snc_partnername>
+                                        
+                                        <jco.client.snc_qop CUSTOMPAR=\"1\">%$rep.JCO_CLIENT_SNC_QOP%</jco.client.snc_qop>
+                                        
+                                        <mx:Class>
+                                            
+                                            <mx:attr name=\"logonuid\">
+                                                
+                                                <mx:value>$FUNCTION.sap_core_generateUserName(%MSKEYVALUE%!!12)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\".password\">
+                                                
+                                                <mx:value>$FUNCTION.sap_core_getPassword(%MX_ENCRYPTED_PASSWORD%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"additionalFaxes\">
+                                                
+                                                <mx:value>%MX_FAX_ADDITIONAL%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"additionalMails\">
+                                                
+                                                <mx:value>%MX_MAIL_ADDITIONAL%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"additionalMobiles\">
+                                                
+                                                <mx:value>%MX_MOBILE_ADDITIONAL%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"additionalPhones\">
+                                                
+                                                <mx:value>%MX_PHONE_ADDITIONAL%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"additionalPagers\">
+                                                
+                                                <mx:value>%MX_PAGER_ADDITIONAL%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"dateformat\">
+                                                
+                                                <mx:value>%MX_DATEFORMAT%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"displayname\">
+                                                
+                                                <mx:value>$FUNCTION.sap_core_getDisplayName(%DISPLAYNAME%!!%MX_FIRSTNAME%!!%MX_LASTNAME%!!%MSKEYVALUE%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"displayname\">
+                                                
+                                                <mx:value>%DISPLAYNAME%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"primaryMail\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_verifyEmailAddress(%MX_MAIL_PRIMARY%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"firstname\">
+                                                
+                                                <mx:value>%MX_FIRSTNAME%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"islocked\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_handleBoolean(%MX_DISABLED%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"ispassworddisabled\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_handlePasswordDisabled(%MX_PASSWORD_DISABLED%!!%MX_ENCRYPTED_PASSWORD%!!%MSKEYVALUE%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"lastname\">
+                                                
+                                                <mx:value>%MX_LASTNAME%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"locale\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_localeToLang2(%MX_LANGUAGE%|%MX_LANGUAGE_COUNTRY%|%MX_LANGUAGE_VARIANT%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"numberformat\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_getSingleSpaceChar(%MX_NUMBERFORMAT%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"primaryFax\">
+                                                
+                                                <mx:value>%MX_FAX_PRIMARY%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"primaryMobile\">
+                                                
+                                                <mx:value>%MX_MOBILE_PRIMARY%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"primaryPager\">
+                                                
+                                                <mx:value>%MX_PAGER_PRIMARY%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"primaryPhone\">
+                                                
+                                                <mx:value>%MX_PHONE_PRIMARY%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"securitypolicy\">
+                                                
+                                                <mx:value>%MX_USERTYPE%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"timezone\">
+                                                
+                                                <mx:value>%MX_TIMEZONE%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"useralias\">
+                                                
+                                                <mx:value>%MX_LOGONALIAS%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"validfrom\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_convertToABAPValidFromDate(%MX_VALIDFROM%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"validto\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_convertToABAPValidToDate(%MX_VALIDTO%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#identityuuid\">
+                                                
+                                                <mx:value>%MX_IDENTITYUUID%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#personuuid\">
+                                                
+                                                <mx:value>%MX_PERSONUUID%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#LogondataAccnt\">
+                                                
+                                                <mx:value>%MX_ACCOUNTING_NUMBER%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"DefaultsCattIndicator\">
+                                                
+                                                <mx:value>%MX_CATT_TEST_STATUS%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#DefaultsCostcenter\">
+                                                
+                                                <mx:value>%MX_COSTCENTER%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"CompanyId\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_toUpperCase(%MX_ADMIN_UNIT%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressBirthName\">
+                                                
+                                                <mx:value>%MX_BIRTHNAME%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressInitials\">
+                                                
+                                                <mx:value>%MX_INITIALS%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressMiddlename\">
+                                                
+                                                <mx:value>%MX_MIDDLENAME%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressPrefix1\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_getHelpValText(MX_NAME_PREFIX!!%MX_NAME_PREFIX_1%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressPrefix2\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_getHelpValText(MX_NAME_PREFIX!!%MX_NAME_PREFIX_2%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#AddressSort1P\">
+                                                
+                                                <mx:value>%MX_SEARCH_TERM_1%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#AddressSort2P\">
+                                                
+                                                <mx:value>%MX_SEARCH_TERM_2%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressSort1P\">
+                                                
+                                                <mx:value>%Z_CEDULA%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressSort2P\">
+                                                
+                                                <mx:value>%MSKEYVALUE%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressNickname\">
+                                                
+                                                <mx:value>%MX_NICKNAME%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#DefaultsSpda\">
+                                                
+                                                <mx:value>%MX_PRINTERSETTINGS_SPDA%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#DefaultsSpdb\">
+                                                
+                                                <mx:value>%MX_PRINTERSETTINGS_SPDB%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#DefaultsSpld\">
+                                                
+                                                <mx:value>%MX_PRINTERSETTINGS_SPLD%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#DefaultsSplg\">
+                                                
+                                                <mx:value>%MX_PRINTERSETTINGS_SPLG%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"salutation\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_getHelpValText(MX_SALUTATION!!%MX_SALUTATION%!!%$rep.JCO_CLIENT_LANG%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressTitleSppl\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_getHelpValText(MX_TITLE_SUPPLEMENT!!%MX_TITLE_SUPPLEMENT%!!%$rep.JCO_CLIENT_LANG%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressSecondname\">
+                                                
+                                                <mx:value>%MX_SECONDNAME%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressBuildingP\">
+                                                
+                                                <mx:value>%MX_WORKPLACE_BUILDING%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressCommType\">
+                                                
+                                                <mx:value>%MX_COMMUNICATION_METHOD%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"department\">
+                                                
+                                                <mx:value>%MX_FS_ORGANIZATIONAL_UNIT%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressFloorP\">
+                                                
+                                                <mx:value>%MX_WORKPLACE_FLOOR%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"jobfunction\">
+                                                
+                                                <mx:value>%MX_FS_POSITION%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressInhouseMl\">
+                                                
+                                                <mx:value>%MX_INHOUSE_MAIL%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressInitsSig\">
+                                                
+                                                <mx:value>%MX_NAME_ABBREVIATION%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressLangupPISO\">
+                                                
+                                                <mx:value>%MX_COMMUNICATION_LANGUAGE%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressRoomNoP\">
+                                                
+                                                <mx:value>%MX_WORKPLACE_ROOM%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#Company\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_getCompAddrAssignmentForABAPProvisioning(%MXREF_MX_COMPANY_ADDRESS%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"ReferenceUser\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_getMskeyvalueForMskey(%MX_REFERENCE_USER%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"securitypolicy\">
+                                                
+                                                <mx:value>%MX_USERTYPE%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"SNCFlag\">
+                                                
+                                                <mx:value>$FUNCTION.sap_abap_writeBoolean(%MX_SNC_FLAG%)$$</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"SNCName\">
+                                                
+                                                <mx:value>%MX_SNC_NAME%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"usergroups\">
+                                                
+                                                <mx:value>%MX_USER_CATEGORY%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#usergroups\">
+                                                
+                                                <mx:value>GROUP1|GROUP2</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#SelfRegister\">
+                                                
+                                                <mx:value>X</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"parameter1\">
+                                                
+                                                <mx:value>AQW</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#parameter1\">
+                                                
+                                                <mx:value>AC_INIT=1|F4METHOD=ActiveX</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#DefaultsStartMenu\">
+                                                
+                                                <mx:value>%MX_START_MENU%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#AddressNameFormat\">
+                                                
+                                                <mx:value>%MX_NAMEFORMAT%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"#AddressNamCountry\">
+                                                
+                                                <mx:value>%MX_NAMCOUNTRY%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressSort1P\">
+                                                
+                                                <mx:value>%Z_CEDULA%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"LogondataAccnt\">
+                                                
+                                                <mx:value>%MX_FS_COST_CENTER_ID%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                            <mx:attr name=\"AddressSort2P\">
+                                                
+                                                <mx:value>%MSKEYVALUE%</mx:value>
+                                                
+                                            </mx:attr>
+                                            
+                                        </mx:Class>
+                                        
+                                    </mx:Pass>
+                                    
+                                    <mx:Functions>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"custom_generateID\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_convertToABAPValidFromDate\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_convertToABAPValidToDate\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_existsDefaultCompanyAddress\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_getCompAddrAssignmentForABAPProvisioning\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_getHelpValText\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_getMskeyvalueForMskey\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_getSingleSpaceChar\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_handleBoolean\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_handlePasswordDisabled\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_localeToLang2\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_toUpperCase\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_verifyEmailAddress\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_abap_writeBoolean\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_core_generateID\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_core_generateUserName\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_core_getDBTablePrefix\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_core_getDisplayName\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_core_getPassword\"/>
+                                        
+                                        <mx:Function Enabled=\"TRUE\" GlobalScript=\"TRUE\" Script=\"JScript\" name=\"sap_core_getRepositoryConstant\"/>
+                                        
+                                    </mx:Functions>
+                                    
+                                </mx:Job>
+                                
+                            </mx:DSEJobs>
+                            
+                        </mx:EMS>
+"
