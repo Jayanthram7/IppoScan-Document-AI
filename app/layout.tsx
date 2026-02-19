@@ -37,7 +37,7 @@ function Sidebar() {
       </div>
 
       {/* Menu */}
-      <nav className="flex-1 px-4 py-6">
+      <nav className="flex-1 px-3 py-4 space-y-0.5">
         <div className="mb-2 px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">
           MENU
         </div>
@@ -57,12 +57,12 @@ function Sidebar() {
         <InventorySubmenu isActive={isActive} />
         <Link
           href="/chat"
-          className={`flex items-center gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive('/chat')
+          className={`flex items-center gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive('/chat')
             ? 'bg-emerald-500 text-white shadow-md shadow-emerald-200'
             : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
             }`}
         >
-          <div className="w-7 h-7 bg-white rounded flex items-center justify-center p-1 shadow-md border border-emerald-500">
+          <div className="w-6 h-6 bg-white rounded flex items-center justify-center p-0.5 shadow-md border border-emerald-500">
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
               <path d="M 10 80 L 30 60 L 75 60 L 90 45 L 75 30 L 60 45 L 30 45 L 10 65 Z" fill="#10b981" />
               <path d="M 90 20 L 70 40 L 25 40 L 10 55 L 25 70 L 40 55 L 70 55 L 90 35 Z" fill="#10b981" />
@@ -71,7 +71,7 @@ function Sidebar() {
           <span className="text-sm flex-1">
             <span className={isActive('/chat') ? 'text-white' : 'text-emerald-600'}>IppoScan</span> Chat
           </span>
-          <div className="px-2 py-0.5 bg-emerald-500 rounded text-white text-[10px] font-semibold">
+          <div className="px-1.5 py-0.5 bg-emerald-500 rounded text-white text-[10px] font-semibold">
             New
           </div>
         </Link>
@@ -79,49 +79,38 @@ function Sidebar() {
           href="https://console.twilio.com/?frameUrl=/console"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+          className="flex items-center gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
         >
           <SidebarIcon type="whatsapp" />
-          <span className="text-sm">WhatsApp (Twilio)</span>
-          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
+          <span className="text-sm">WhatsApp</span>
         </a>
         <a
           href="https://github.com/Jayanthram7/Docusense-AI"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+          className="flex items-center gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
         >
           <SidebarIcon type="github" />
           <span className="text-sm">GitHub</span>
-          <svg className="w-3 h-3 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
         </a>
-        <SidebarLink href="/features" icon="features" isActive={isActive('/features')}>
-          Features
-        </SidebarLink>
-        <SidebarLink href="/evaluation" icon="evaluation" isActive={isActive('/evaluation')}>
-          Evaluation Metrics
-        </SidebarLink>
+        <FeaturesSubmenu isActive={isActive} />
       </nav>
 
       {/* Bottom Menu */}
-      <div className="p-4 border-t border-gray-100">
-
-        <div className="px-3 py-2 mt-2 mb-1">
-          <p className="text-xs text-gray-400 font-medium">Signed in as</p>
-          <p className="text-sm font-bold text-gray-700 truncate">Jayanthram K</p>
+      <div className="p-4 border-t border-gray-100 bg-gray-50/50">
+        <div className="flex items-center justify-between gap-2 px-2 py-1 rounded-lg hover:bg-white hover:shadow-sm transition-all duration-200 group">
+          <div className="flex flex-col min-w-0">
+            <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Signed in as</p>
+            <p className="text-xs font-bold text-gray-700 truncate group-hover:text-gray-900">Jayanthram K</p>
+          </div>
+          <Link
+            href="/"
+            className="flex-shrink-0 p-1.5 rounded-md text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
+            title="Logout"
+          >
+            <SidebarIcon type="logout" />
+          </Link>
         </div>
-
-        <Link
-          href="/"
-          className="flex items-center gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out font-medium text-gray-500 hover:bg-red-50 hover:text-red-600"
-        >
-          <SidebarIcon type="logout" />
-          <span className="text-sm">Logout</span>
-        </Link>
       </div>
     </aside>
   );
@@ -144,7 +133,7 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
     <div>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out font-medium ${isInventoryActive
+        className={`w-full flex items-center justify-between gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isInventoryActive
           ? 'bg-emerald-50 text-emerald-600'
           : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
           }`}
@@ -164,10 +153,10 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
       </button>
 
       {isOpen && (
-        <div className="ml-8 mt-1 space-y-1 animate-slideIn border-l border-gray-200 pl-3">
+        <div className="ml-8 mt-0.5 space-y-0.5 animate-slideIn border-l border-gray-200 pl-3">
           <Link
             href="/inventory/source"
-            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/source')
+            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/inventory/source')
               ? 'text-emerald-600 font-medium bg-emerald-50'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
@@ -176,7 +165,7 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
           </Link>
           <Link
             href="/inventory/delivered"
-            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/delivered')
+            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/inventory/delivered')
               ? 'text-emerald-600 font-medium bg-emerald-50'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
@@ -185,12 +174,83 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
           </Link>
           <Link
             href="/inventory/in-godown"
-            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/in-godown')
+            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/inventory/in-godown')
               ? 'text-emerald-600 font-medium bg-emerald-50'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
           >
             Godown (Stock)
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FeaturesSubmenu({ isActive }: { isActive: (path: string) => boolean }) {
+  const [isOpen, setIsOpen] = React.useState(true);
+  const pathname = usePathname();
+
+  // Auto-open if any feature sub-route is active
+  React.useEffect(() => {
+    if (pathname === '/features' || pathname === '/evaluation' || pathname === '/endpoints') {
+      setIsOpen(true);
+    }
+  }, [pathname]);
+
+  const isFeaturesActive = pathname === '/features' || pathname === '/evaluation' || pathname === '/endpoints';
+
+  return (
+    <div>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full flex items-center justify-between gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isFeaturesActive
+          ? 'bg-emerald-50 text-emerald-600'
+          : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+          }`}
+      >
+        <div className="flex items-center gap-3">
+          <SidebarIcon type="features" />
+          <span className="text-sm">Features</span>
+        </div>
+        <svg
+          className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div className="ml-8 mt-0.5 space-y-0.5 animate-slideIn border-l border-gray-200 pl-3">
+          <Link
+            href="/features"
+            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/features')
+              ? 'text-emerald-600 font-medium bg-emerald-50'
+              : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+          >
+            Overview
+          </Link>
+          <Link
+            href="/evaluation"
+            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/evaluation')
+              ? 'text-emerald-600 font-medium bg-emerald-50'
+              : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+          >
+            Evaluation Metrics
+          </Link>
+          <Link
+            href="/endpoints"
+            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/endpoints')
+              ? 'text-emerald-600 font-medium bg-emerald-50'
+              : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+          >
+            Endpoints
           </Link>
         </div>
       )}
@@ -212,7 +272,7 @@ function SidebarLink({
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 px-3 py-2.5 mb-1 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive
+      className={`flex items-center gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive
         ? 'bg-emerald-500 text-white shadow-md shadow-emerald-200'
         : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
         }`}
@@ -284,7 +344,12 @@ function SidebarIcon({ type }: { type: string }) {
     ),
     evaluation: (
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2zm0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    ),
+    api: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
       </svg>
     ),
   };
