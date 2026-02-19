@@ -37,63 +37,84 @@ function Sidebar() {
       </div>
 
       {/* Menu */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5">
-        <div className="mb-2 px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-          MENU
-        </div>
-        <SidebarLink href="/dashboard" icon="dashboard" isActive={isActive('/dashboard')}>
-          Dashboard
-        </SidebarLink>
-        <SidebarLink href="/invoices" icon="invoices" isActive={isActive('/invoices')}>
-          Invoices (Orders)
-        </SidebarLink>
-        <SidebarLink href="/inventory/shipment" icon="shipment" isActive={isActive('/inventory/shipment')}>
-          Shipment
-        </SidebarLink>
-        <SidebarLink href="/xml-to-json" icon="xml" isActive={isActive('/xml-to-json')}>
-          XML to JSON
-        </SidebarLink>
+      <nav className="flex-1 px-4 py-4 space-y-6 overflow-y-auto no-scrollbar">
 
-        <InventorySubmenu isActive={isActive} />
-        <Link
-          href="/chat"
-          className={`flex items-center gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive('/chat')
-            ? 'bg-emerald-500 text-white shadow-md shadow-emerald-200'
-            : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
-            }`}
-        >
-          <div className="w-6 h-6 bg-white rounded flex items-center justify-center p-0.5 shadow-md border border-emerald-500">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-              <path d="M 10 80 L 30 60 L 75 60 L 90 45 L 75 30 L 60 45 L 30 45 L 10 65 Z" fill="#10b981" />
-              <path d="M 90 20 L 70 40 L 25 40 L 10 55 L 25 70 L 40 55 L 70 55 L 90 35 Z" fill="#10b981" />
+        {/* MAIN Section */}
+        <div className="space-y-1">
+          <div className="px-3 mb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            MAIN
+          </div>
+          <SidebarLink href="/dashboard" icon="dashboard" isActive={isActive('/dashboard')}>
+            Dashboard
+          </SidebarLink>
+          <Link
+            href="/chat"
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive('/chat')
+              ? 'bg-emerald-500 text-white shadow-md shadow-emerald-200'
+              : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+              }`}
+          >
+            <div className="w-6 h-6 bg-white rounded flex items-center justify-center p-0.5 shadow-md border border-emerald-500">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                <path d="M 10 80 L 30 60 L 75 60 L 90 45 L 75 30 L 60 45 L 30 45 L 10 65 Z" fill="#10b981" />
+                <path d="M 90 20 L 70 40 L 25 40 L 10 55 L 25 70 L 40 55 L 70 55 L 90 35 Z" fill="#10b981" />
+              </svg>
+            </div>
+            <span className="text-sm flex-1">
+              <span className={isActive('/chat') ? 'text-white' : 'text-emerald-600'}>IppoScan</span> Chat
+            </span>
+            <div className="px-1.5 py-0.5 bg-emerald-500 rounded text-white text-[10px] font-semibold">
+              New
+            </div>
+          </Link>
+        </div>
+
+        {/* INVENTORY Section */}
+        <div className="space-y-1">
+          <div className="px-3 mb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            INVENTORY
+          </div>
+          <SidebarLink href="/invoices" icon="invoices" isActive={isActive('/invoices')}>
+            Invoices (Orders)
+          </SidebarLink>
+          <InventorySubmenu isActive={isActive} />
+          <SidebarLink href="/xml-to-json" icon="xml" isActive={isActive('/xml-to-json')}>
+            XML to JSON
+          </SidebarLink>
+        </div>
+
+        {/* FEATURES Section */}
+        <div className="space-y-1">
+          <div className="px-3 mb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+            FEATURES
+          </div>
+          <FeaturesSubmenu isActive={isActive} />
+          <a
+            href="https://github.com/Jayanthram7/Docusense-AI"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+          >
+            <SidebarIcon type="github" />
+            <span className="text-sm">GitHub</span>
+            <svg className="w-4 h-4 ml-auto text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
             </svg>
-          </div>
-          <span className="text-sm flex-1">
-            <span className={isActive('/chat') ? 'text-white' : 'text-emerald-600'}>IppoScan</span> Chat
-          </span>
-          <div className="px-1.5 py-0.5 bg-emerald-500 rounded text-white text-[10px] font-semibold">
-            New
-          </div>
-        </Link>
-        <a
-          href="https://console.twilio.com/?frameUrl=/console"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-        >
-          <SidebarIcon type="whatsapp" />
-          <span className="text-sm">WhatsApp</span>
-        </a>
-        <a
-          href="https://github.com/Jayanthram7/Docusense-AI"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-        >
-          <SidebarIcon type="github" />
-          <span className="text-sm">GitHub</span>
-        </a>
-        <FeaturesSubmenu isActive={isActive} />
+          </a>
+          <a
+            href="https://console.twilio.com/?frameUrl=/console"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+          >
+            <SidebarIcon type="whatsapp" />
+            <span className="text-sm">WhatsApp (Twilio)</span>
+            <svg className="w-4 h-4 ml-auto text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+
       </nav>
 
       {/* Bottom Menu */}
@@ -133,7 +154,7 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
     <div>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isInventoryActive
+        className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isInventoryActive
           ? 'bg-emerald-50 text-emerald-600'
           : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
           }`}
@@ -153,10 +174,10 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
       </button>
 
       {isOpen && (
-        <div className="ml-8 mt-0.5 space-y-0.5 animate-slideIn border-l border-gray-200 pl-3">
+        <div className="ml-8 mt-1 space-y-1 animate-slideIn border-l border-gray-200 pl-3">
           <Link
             href="/inventory/source"
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/inventory/source')
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/source')
               ? 'text-emerald-600 font-medium bg-emerald-50'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
@@ -165,7 +186,7 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
           </Link>
           <Link
             href="/inventory/delivered"
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/inventory/delivered')
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/delivered')
               ? 'text-emerald-600 font-medium bg-emerald-50'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
@@ -174,7 +195,7 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
           </Link>
           <Link
             href="/inventory/in-godown"
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/inventory/in-godown')
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/in-godown')
               ? 'text-emerald-600 font-medium bg-emerald-50'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
@@ -188,7 +209,7 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
 }
 
 function FeaturesSubmenu({ isActive }: { isActive: (path: string) => boolean }) {
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const pathname = usePathname();
 
   // Auto-open if any feature sub-route is active
@@ -204,7 +225,7 @@ function FeaturesSubmenu({ isActive }: { isActive: (path: string) => boolean }) 
     <div>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isFeaturesActive
+        className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isFeaturesActive
           ? 'bg-emerald-50 text-emerald-600'
           : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
           }`}
@@ -224,10 +245,10 @@ function FeaturesSubmenu({ isActive }: { isActive: (path: string) => boolean }) 
       </button>
 
       {isOpen && (
-        <div className="ml-8 mt-0.5 space-y-0.5 animate-slideIn border-l border-gray-200 pl-3">
+        <div className="ml-8 mt-1 space-y-1 animate-slideIn border-l border-gray-200 pl-3">
           <Link
             href="/features"
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/features')
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/features')
               ? 'text-emerald-600 font-medium bg-emerald-50'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
@@ -236,7 +257,7 @@ function FeaturesSubmenu({ isActive }: { isActive: (path: string) => boolean }) 
           </Link>
           <Link
             href="/evaluation"
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/evaluation')
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/evaluation')
               ? 'text-emerald-600 font-medium bg-emerald-50'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
@@ -245,7 +266,7 @@ function FeaturesSubmenu({ isActive }: { isActive: (path: string) => boolean }) 
           </Link>
           <Link
             href="/endpoints"
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs rounded-lg transition-all duration-200 ${isActive('/endpoints')
+            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/endpoints')
               ? 'text-emerald-600 font-medium bg-emerald-50'
               : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
               }`}
@@ -272,7 +293,7 @@ function SidebarLink({
   return (
     <Link
       href={href}
-      className={`flex items-center gap-3 px-3 py-2 mb-0.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive
+      className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive
         ? 'bg-emerald-500 text-white shadow-md shadow-emerald-200'
         : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
         }`}
@@ -333,7 +354,7 @@ function SidebarIcon({ type }: { type: string }) {
       </svg>
     ),
     github: (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
         <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
       </svg>
     ),
