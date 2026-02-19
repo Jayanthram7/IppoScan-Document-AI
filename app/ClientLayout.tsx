@@ -83,9 +83,6 @@ function Sidebar() {
 
                 {/* FEATURES Section */}
                 <div className="space-y-1">
-                    <div className="px-3 mb-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                        FEATURES
-                    </div>
                     <FeaturesSubmenu isActive={isActive} />
                     <a
                         href="https://github.com/Jayanthram7/Docusense-AI"
@@ -199,6 +196,15 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
                             }`}
                     >
                         Godown (Stock)
+                    </Link>
+                    <Link
+                        href="/inventory/shipment"
+                        className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/inventory/shipment')
+                            ? 'text-emerald-600 font-medium bg-emerald-50'
+                            : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                            }`}
+                    >
+                        Shipment
                     </Link>
                 </div>
             )}
@@ -451,6 +457,7 @@ export default function ClientLayout({
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                         </svg>
+                        <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border border-indigo-600 animate-pulse"></span>
                     </div>
                 </div>
                 <span className="font-bold text-sm tracking-wide">IppoChat Ai</span>
