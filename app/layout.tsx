@@ -121,8 +121,8 @@ function Sidebar() {
       <div className="p-4 border-t border-gray-100 bg-gray-50/50">
         <div className="flex items-center justify-between gap-2 px-2 py-1 rounded-lg hover:bg-white hover:shadow-sm transition-all duration-200 group">
           <div className="flex flex-col min-w-0">
-            <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Signed in as</p>
-            <p className="text-xs font-bold text-gray-700 truncate group-hover:text-gray-900">Jayanthram K</p>
+            <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">Signed in as</p>
+            <p className="text-sm font-bold text-gray-700 truncate group-hover:text-gray-900">Jayanthram K</p>
           </div>
           <Link
             href="/"
