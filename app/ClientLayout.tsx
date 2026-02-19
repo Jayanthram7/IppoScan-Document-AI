@@ -32,7 +32,7 @@ function Sidebar() {
             </div>
 
             {/* Menu */}
-            <nav className="flex-1 px-4 py-4 space-y-6 overflow-y-auto no-scrollbar">
+            <nav className="flex-1 px-4 py-4 space-y-4 overflow-y-auto no-scrollbar">
 
                 {/* MAIN Section */}
                 <div className="space-y-1">
@@ -75,6 +75,9 @@ function Sidebar() {
                     <InventorySubmenu isActive={isActive} />
                     <SidebarLink href="/xml-to-json" icon="xml" isActive={isActive('/xml-to-json')}>
                         XML to JSON
+                    </SidebarLink>
+                    <SidebarLink href="/anomalies" icon="anomalies" isActive={isActive('/anomalies')}>
+                        Anomalies
                     </SidebarLink>
                 </div>
 
@@ -149,7 +152,7 @@ function InventorySubmenu({ isActive }: { isActive: (path: string) => boolean })
         <div>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isInventoryActive
+                className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg transition-all duration-200 ease-in-out font-medium ${isInventoryActive
                     ? 'bg-emerald-50 text-emerald-600'
                     : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                     }`}
@@ -220,7 +223,7 @@ function FeaturesSubmenu({ isActive }: { isActive: (path: string) => boolean }) 
         <div>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isFeaturesActive
+                className={`w-full flex items-center justify-between gap-3 px-3 py-2 rounded-lg transition-all duration-200 ease-in-out font-medium ${isFeaturesActive
                     ? 'bg-emerald-50 text-emerald-600'
                     : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                     }`}
@@ -268,6 +271,33 @@ function FeaturesSubmenu({ isActive }: { isActive: (path: string) => boolean }) 
                     >
                         Endpoints
                     </Link>
+                    <Link
+                        href="/status"
+                        className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/status')
+                            ? 'text-emerald-600 font-medium bg-emerald-50'
+                            : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                            }`}
+                    >
+                        System Status
+                    </Link>
+                    <Link
+                        href="/playground"
+                        className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/playground')
+                            ? 'text-emerald-600 font-medium bg-emerald-50'
+                            : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                            }`}
+                    >
+                        AI Playground
+                    </Link>
+                    <Link
+                        href="/architecture"
+                        className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-all duration-200 ${isActive('/architecture')
+                            ? 'text-emerald-600 font-medium bg-emerald-50'
+                            : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'
+                            }`}
+                    >
+                        Architecture
+                    </Link>
                 </div>
             )}
         </div>
@@ -288,7 +318,7 @@ function SidebarLink({
     return (
         <Link
             href={href}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive
+            className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive
                 ? 'bg-emerald-500 text-white shadow-md shadow-emerald-200'
                 : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                 }`}
@@ -340,6 +370,11 @@ function SidebarIcon({ type }: { type: string }) {
         xml: (
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+        ),
+        anomalies: (
+            <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
         ),
 

@@ -80,13 +80,13 @@ const features = [
 
     {
         title: 'Inventory Management',
-        description: 'Real-time tracking of stock levels across multiple locations.',
+        description: 'Real-time tracking of stock levels across multiple locations. Includes shipment logistics to track deliveries and manage routes efficiently.',
         icon: (
             <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
             </svg>
         ),
-        tags: ['Real-time', 'Stock'],
+        tags: ['Real-time', 'Stock', 'Logistics'],
         className: 'md:col-span-2 lg:col-span-1 lg:row-span-2',
         bgPattern: true
     },
@@ -106,14 +106,14 @@ const features = [
         bgPattern: false
     },
     {
-        title: 'Gemini Integration',
-        description: 'Powered by Google Gemini models for state-of-the-art multimodal capabilities.',
+        title: 'XML to JSON',
+        description: 'Convert XML invoices and documents to structured JSON format with a single click for easy processing and integration.',
         icon: (
             <svg className="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
             </svg>
         ),
-        tags: ['Google AI', 'LLM'],
+        tags: ['Conversion', 'Data'],
         className: 'md:col-span-1 lg:col-span-1',
         bgPattern: false
     },
@@ -130,14 +130,14 @@ const features = [
         bgPattern: false
     },
     {
-        title: 'Shipment Logistics',
-        description: 'Track deliveries, manage routes efficiently.',
+        title: 'System Status Health Check',
+        description: 'Real-time monitoring of all connected services — MongoDB, Gemini AI, and Twilio — with live health indicators.',
         icon: (
             <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         ),
-        tags: ['Logistics', 'Tracking'],
+        tags: ['Monitoring', 'Live'],
         className: 'md:col-span-1 lg:col-span-1',
         bgPattern: false
     },

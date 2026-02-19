@@ -81,27 +81,23 @@ export async function GET(request: NextRequest) {
     const inventoryItems = Array.from(itemsMap.values()).filter(qty => qty > 0).length;
 
     // Calculate monthly data (April to March fiscal year)
-    const months = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-    const monthlyData = months.map(monthName => {
-      const monthIndex = months.indexOf(monthName);
-      const monthNum = monthIndex < 9 ? monthIndex + 4 : monthIndex - 8; // Apr=4, May=5, ..., Mar=3
-
-      const purchasesForMonth = purchaseOrders.filter(po => {
-        const date = new Date(po.invoice_date);
-        return date.getMonth() === (monthNum - 1); // JS months are 0-indexed
-      }).reduce((sum, po) => sum + (parseFloat(po.structured_data?.grand_total || '0')), 0);
-
-      const salesForMonth = salesInvoices.filter(si => {
-        const date = new Date(si.invoice_date);
-        return date.getMonth() === (monthNum - 1);
-      }).reduce((sum, si) => sum + (parseFloat(si.structured_data?.grand_total || '0')), 0);
-
-      return {
-        month: monthName,
-        purchases: purchasesForMonth,
-        sales: salesForMonth,
-      };
-    });
+    // Synthetic data for showcase to ensure "ups and downs"
+    // Requirement: Purchases > Sales in 4 months, Sales > Purchases in 8 months
+    // High variance for "jagged" look
+    const monthlyData = [
+      { month: 'Apr', sales: 24500, purchases: 12000 },  // 1. S > P (Start strong)
+      { month: 'May', sales: 29000, purchases: 31000 },  // 1. P > S (Stock up)
+      { month: 'Jun', sales: 15000, purchases: 38000 },  // 2. P > S (Major dip in sales, high purchase)
+      { month: 'Jul', sales: 42000, purchases: 18000 },  // 2. S > P (Big recovery)
+      { month: 'Aug', sales: 38000, purchases: 41000 },  // 3. P > S (Pre-season stock)
+      { month: 'Sep', sales: 45000, purchases: 22000 },  // 3. S > P (Season start)
+      { month: 'Oct', sales: 28000, purchases: 15000 },  // 4. S > P (Dip)
+      { month: 'Nov', sales: 52000, purchases: 35000 },  // 5. S > P (Peak)
+      { month: 'Dec', sales: 24000, purchases: 29000 },  // 4. P > S (End year stock)
+      { month: 'Jan', sales: 22500, purchases: 21000 },  // 6. S > P (Close call, slight profit)
+      { month: 'Feb', sales: 39000, purchases: 16000 },  // 7. S > P (Strong month)
+      { month: 'Mar', sales: 48000, purchases: 26000 },  // 8. S > P (Fiscal year end push)
+    ];
 
     return NextResponse.json({
       success: true,
