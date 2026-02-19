@@ -6,6 +6,14 @@ import { usePathname } from 'next/navigation';
 
 function Sidebar() {
     const pathname = usePathname();
+    const [anomalyCount, setAnomalyCount] = React.useState<number | null>(null);
+
+    React.useEffect(() => {
+        fetch('/api/dashboard')
+            .then(r => r.json())
+            .then(d => setAnomalyCount(d.anomaliesDetected ?? null))
+            .catch(() => { });
+    }, []);
 
     const isActive = (path: string) => {
         if (path === '/dashboard') {
@@ -76,9 +84,24 @@ function Sidebar() {
                     <SidebarLink href="/xml-to-json" icon="xml" isActive={isActive('/xml-to-json')}>
                         XML to JSON
                     </SidebarLink>
-                    <SidebarLink href="/anomalies" icon="anomalies" isActive={isActive('/anomalies')}>
-                        Anomalies
-                    </SidebarLink>
+                    <Link
+                        href="/anomalies"
+                        className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all duration-200 ease-in-out font-medium ${isActive('/anomalies')
+                            ? 'bg-emerald-500 text-white shadow-md shadow-emerald-200'
+                            : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                            }`}
+                    >
+                        <SidebarIcon type="anomalies" />
+                        <span className="text-sm flex-1">Anomalies</span>
+                        {anomalyCount !== null && anomalyCount > 0 && (
+                            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${isActive('/anomalies')
+                                    ? 'bg-white/20 text-white'
+                                    : 'bg-red-100 text-red-600'
+                                }`}>
+                                {anomalyCount}
+                            </span>
+                        )}
+                    </Link>
                 </div>
 
                 {/* FEATURES Section */}
